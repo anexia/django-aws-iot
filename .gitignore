@@ -3,3 +3,4 @@
 build/**
 venv/**
 dist/**
+django_aws_iot.egg-info/**

@@ -1,0 +1,61 @@
+name: Module tests
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.7', '3.8', '3.9', '3.10']
+        django-version: ['3.2', '4.0', '4.1']
+        experimental: [false]
+        exclude:
+          - python-version: "3.7"
+            django-version: "4.0"
+          - python-version: "3.7"
+            django-version: "4.1"
+          
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 codecov
+
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Install Django ${{ matrix.django-version }}
+        run: pip install 'Django==${{ matrix.django-version }}'
+
+      - name: Install django_aws_iot
+        run: pip install .
+
+      - name: Run tests
+        continue-on-error: ${{ matrix.experimental }}
+        run: |
+          cd tests
+
+          # run tests with coverage
+          coverage run \
+            --source='.' \
+            --omit='./__version__.py' \
+            manage.py test
+          coverage xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
