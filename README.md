@@ -1,9 +1,16 @@
+# Django AWS IoT
+[![PyPI](https://badge.fury.io/py/django-aws-iot.svg)](https://pypi.org/project/django-aws-iot/)
+[![Test Status](https://github.com/anexia/django-aws-iot/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/anexia/django-aws-iot/actions/workflows/tests.yml)
+[![Codecov](https://codecov.io/gh/anexia/django-aws-iot/branch/main/graph/badge.svg)](https://codecov.io/gh/anexia/django-aws-iot)
+
+A django module that allows to connect and publish messages to AWS IoT
+
 # Installation
 
 Install using pip:
 
 ```shell
-pip install git+https://github.com/nezhar/django-aws-iot@main
+pip install django-aws-iot
 ```
 
 Extend django settings:
