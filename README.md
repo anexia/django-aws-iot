@@ -1,9 +1,13 @@
+# Django AWS IoT
+
+A django module that allows to connect and publish messages to AWS IoT
+
 # Installation
 
 Install using pip:
 
 ```shell
-pip install git+https://github.com/nezhar/django-aws-iot@main
+pip install git+https://github.com/anexia/django-aws-iot@main
 ```
 
 Extend django settings:

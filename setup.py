@@ -14,10 +14,10 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
-    description='An django module that allows to connect an publish messages to AWS IoT',
+    description='A django module that allows to connect and publish messages to AWS IoT',
     long_description=README,
     long_description_content_type='text/markdown',
-    url='https://github.com/nezhar/django-aws-iot',
+    url='https://github.com/anexia/django-aws-iot',
     author='Harald Nezbeda',
     author_email='hnezbeda@anexia-it.com',
     classifiers=[
