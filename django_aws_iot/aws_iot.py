@@ -76,6 +76,10 @@ def mqtt_publish(topic, data):
     :param topic: str, Topic path
     :param data: dict, JSON serializable message to be published
     """
+    if not getattr(settings, "AWS_IOT_ENABLED", False):
+        logger.info("AWS IoT is not enabled")
+        return
+
     logger.info("Begin Publish")
 
     connection = mqtt_connection()
